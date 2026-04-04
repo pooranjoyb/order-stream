@@ -1,7 +1,7 @@
-package com.pooranjoyb.app.order_stream.order.entity;
+package com.pooranjoyb.order_stream.order.entity;
 
-import com.pooranjoyb.app.order_stream.core.entity.AuditFields;
-import com.pooranjoyb.app.order_stream.order.common.enums.OrderStatus;
+import com.pooranjoyb.order_stream.core.entity.AuditFields;
+import com.pooranjoyb.order_stream.order.common.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +18,8 @@ public class Order extends AuditFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal amount;
+    private BigDecimal price;
+    private BigDecimal netAmount;
     private String category;
     private String item;
     private Integer quantity;

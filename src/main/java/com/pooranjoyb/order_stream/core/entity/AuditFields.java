@@ -1,4 +1,4 @@
-package com.pooranjoyb.app.order_stream.core.entity;
+package com.pooranjoyb.order_stream.core.entity;
 
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;

@@ -1,4 +1,4 @@
-package com.pooranjoyb.app.order_stream.order.common.enums;
+package com.pooranjoyb.order_stream.order.common.enums;
 
 public enum OrderStatus {
     PENDING,
