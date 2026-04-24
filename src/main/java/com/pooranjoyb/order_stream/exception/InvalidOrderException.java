@@ -1,4 +1,4 @@
-package com.pooranjoyb.order_stream.Exception;
+package com.pooranjoyb.order_stream.exception;
 
 public class InvalidOrderException extends RuntimeException {
     public InvalidOrderException(String message) {
@@ -6,3 +6,4 @@ public class InvalidOrderException extends RuntimeException {
     }
     
 }
+ 
