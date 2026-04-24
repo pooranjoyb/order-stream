@@ -6,13 +6,10 @@ import com.pooranjoyb.order_stream.order.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
@@ -25,6 +22,12 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody @Valid OrderRequestDto requestDto) {
         Order order = orderService.createOrder(requestDto);
+        return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+        Order order = orderService.getOrderById(id);
         return ResponseEntity.ok(order);
     }
 }

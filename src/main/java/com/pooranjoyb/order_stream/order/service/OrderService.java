@@ -8,4 +8,6 @@ import java.util.List;
 public interface OrderService {
 
     Order createOrder(OrderRequestDto orderRequestDto);
+
+    Order getOrderById(Long id);
 }
