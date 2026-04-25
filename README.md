@@ -1,6 +1,6 @@
 # Order Stream
 
-Comprehensive order processing system built with **Spring Boot**, **PostgreSQL**, and **RabbitMQ**.  
+Comprehensive order processing microservices system built with **Spring Boot**, **PostgreSQL**, and **RabbitMQ**.  
 Designed with clean architecture and event-driven processing using message queues.
 
 ### Requirements
@@ -26,8 +26,17 @@ cd order-stream
 docker-compose up -d
 ```
 
-#### Run the Application
+#### Run the Microservices
+
+- Order Service
 ```bash
+cd order.service
+mvn spring-boot:run
+```
+
+- Product Service
+```bash
+cd product.service
 mvn spring-boot:run
 ```
 
