@@ -1,4 +1,4 @@
-package com.pooranjoyb.order_stream.config;
+package com.pooranjoyb.order_stream.runners;
 
 import com.pooranjoyb.order_stream.order.common.enums.OrderStatus;
 import com.pooranjoyb.order_stream.order.entity.Order;

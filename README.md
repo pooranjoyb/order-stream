@@ -31,4 +31,6 @@ docker-compose up -d
 mvn spring-boot:run
 ```
 
+#### Swagger-ui can be accessed via ``http://localhost:8080/swagger-ui/index.html#``
+
 Hope you'll have a great learning experience from this project. Happy Contributing!

@@ -5,6 +5,7 @@ import com.pooranjoyb.order_stream.order.entity.Order;
 import com.pooranjoyb.order_stream.order.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,6 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody @Valid OrderRequestDto requestDto) {
         Order order = orderService.createOrder(requestDto);
-        return ResponseEntity.ok(order);
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 }

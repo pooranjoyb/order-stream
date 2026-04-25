@@ -17,6 +17,8 @@ public abstract class AuditFields {
 
     @PrePersist
     protected void preInsert() {
+        setCreatedBy("API");
+        setUpdatedBy("API");
         setCreatedAt(LocalDateTime.now());
         setUpdatedAt(LocalDateTime.now());
     }
