@@ -1,0 +1,16 @@
+# order type
+type Order {
+    id: Int,
+    price: Float,
+    netAmount: Float,
+    category: String,
+    item: String,
+    quantity: Int,
+    status: String
+}
+
+# queries
+type Query {
+    getOrders: [Order],
+    createOrder: Order
+}
