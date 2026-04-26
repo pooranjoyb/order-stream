@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "orders")
 @Builder
 @AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Order extends AuditFields {
     @Id
