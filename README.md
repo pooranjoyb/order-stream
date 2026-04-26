@@ -11,6 +11,8 @@ Make sure you have the following installed:
 - **Apache Maven 3.9+**
 - **Docker & Docker Compose**
 
+#### _Architecture of this project can be viewed [here](https://drive.google.com/file/d/1LLSfkOoTyUrUYELHl9_MD4y01DsIZV70/view?usp=drive_link)_ :)
+
 ### Getting Started
 
 #### Clone the Repository
