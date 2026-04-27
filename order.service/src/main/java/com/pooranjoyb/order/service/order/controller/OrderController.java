@@ -40,4 +40,9 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrderById(@PathVariable @Valid  Long id) {
+        orderService.deleteOrderById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

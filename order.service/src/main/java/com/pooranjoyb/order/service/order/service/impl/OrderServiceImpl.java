@@ -55,4 +55,12 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderResponseDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
     }
+
+    @Override
+    public void deleteOrderById(Long id) {
+        if (!orderRepository.existsById(id)) {
+            throw new EntityNotFoundException("Cannot delete. Order not found with id: " + id);
+        }
+        orderRepository.deleteById(id);
+    }
 }
