@@ -33,4 +33,11 @@ public class OrderController {
         OrderResponseDto order = orderService.createOrder(requestDto);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable @Valid Long id) {
+        OrderResponseDto order = orderService.getOrderById(id);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
 }
