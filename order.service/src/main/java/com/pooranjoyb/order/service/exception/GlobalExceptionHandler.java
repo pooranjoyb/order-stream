@@ -32,6 +32,22 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * Handles Resource Not Found errors
+     * Returns 404 Not Found
+     */
+    @ExceptionHandler(jakarta.persistence.EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(jakarta.persistence.EntityNotFoundException ex) {
+        log.error("Resource not found: {}", ex.getMessage());
+        ErrorResponse error = new ErrorResponse(
+                LocalDateTime.now(),
+                "Resource Not Found",
+                ex.getMessage()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    /**
      * Catching for any other unhandled exceptions
      * Returns 500 Internal Server Error
      */

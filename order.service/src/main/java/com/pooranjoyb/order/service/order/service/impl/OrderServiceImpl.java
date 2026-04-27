@@ -6,12 +6,15 @@ import com.pooranjoyb.order.service.order.dto.OrderResponseDto;
 import com.pooranjoyb.order.service.order.entity.Order;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.order.service.order.service.OrderService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +47,12 @@ public class OrderServiceImpl implements OrderService {
             orderResponse.add(OrderResponseDto.fromEntity(i));
 
         return orderResponse;
+    }
+
+    @Override
+    public OrderResponseDto getOrderById(Long id) {
+        return orderRepository.findById(id)
+                .map(OrderResponseDto::fromEntity)
+                .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
     }
 }
