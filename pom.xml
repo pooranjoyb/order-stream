@@ -5,6 +5,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
+        <module>shared</module>
         <module>graphql.gateway</module>
         <module>order.service</module>
         <module>product.service</module>

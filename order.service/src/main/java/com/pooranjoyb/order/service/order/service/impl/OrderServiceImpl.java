@@ -4,6 +4,7 @@ import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
 import com.pooranjoyb.order.service.order.dto.OrderRequestDto;
 import com.pooranjoyb.order.service.order.dto.OrderResponseDto;
 import com.pooranjoyb.order.service.order.entity.Order;
+import com.pooranjoyb.order.common.event.OrderEventType;
 import com.pooranjoyb.order.service.order.event.OrderEvent;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.order.service.order.service.OrderService;
@@ -80,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
                 .netAmount(order.getNetAmount())
                 .status(order.getStatus())
                 .createdAt(LocalDateTime.now())
-                .eventType("ORDER_CREATED")
+                .eventType(OrderEventType.ORDER_CREATED)
                 .build();
 
         rabbitTemplate.convertAndSend("order.exchange", "order.created", orderEvent);
