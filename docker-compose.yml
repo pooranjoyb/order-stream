@@ -1,4 +1,6 @@
 services:
+
+  # shared db
   shared_database:
     image: postgres:14.22-trixie
     restart: always
@@ -12,5 +14,21 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./shared/scripts:/docker-entrypoint-initdb.d/
 
+  # rabbitmq
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+
 volumes:
   postgres_data:
+  rabbitmq_data:
