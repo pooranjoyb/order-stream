@@ -1,5 +1,6 @@
 package com.pooranjoyb.order.service.order.event;
 
+import com.pooranjoyb.order.common.event.OrderEventType;
 import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +26,5 @@ public class OrderEvent implements Serializable {
     private BigDecimal netAmount;
     private OrderStatus status;
     private LocalDateTime createdAt;
-    private String eventType;
+    private OrderEventType eventType;
 }
