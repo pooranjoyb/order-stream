@@ -1,5 +1,5 @@
 services:
-  database:
+  shared_database:
     image: postgres:14.22-trixie
     restart: always
     ports:
@@ -7,9 +7,10 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: order_stream
+      POSTGRES_DB: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./shared/scripts:/docker-entrypoint-initdb.d/
 
 volumes:
   postgres_data:
