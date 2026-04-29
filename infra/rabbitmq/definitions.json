@@ -59,7 +59,7 @@
     {
       "source": "order.exchange",
       "vhost": "/",
-      "destination": "order.created.queue",
+      "destination": "product.reserved.queue",
       "destination_type": "queue",
       "routing_key": "product.reserved",
       "arguments": {}

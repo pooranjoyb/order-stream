@@ -7,17 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductReservationResultEvent implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
+public class ProductReservationResultEvent {
     private Long orderId;
     private Long productId;
     private String item;
