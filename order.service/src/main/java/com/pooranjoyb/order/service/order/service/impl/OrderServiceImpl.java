@@ -4,14 +4,18 @@ import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
 import com.pooranjoyb.order.service.order.dto.OrderRequestDto;
 import com.pooranjoyb.order.service.order.dto.OrderResponseDto;
 import com.pooranjoyb.order.service.order.entity.Order;
+import com.pooranjoyb.order.common.event.OrderEventType;
+import com.pooranjoyb.order.service.order.event.OrderEvent;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.order.service.order.service.OrderService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final RabbitTemplate rabbitTemplate;
 
     @Override
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
@@ -36,7 +41,9 @@ public class OrderServiceImpl implements OrderService {
                 .category(orderRequestDto.getCategory())
                 .quantity(orderRequestDto.getQuantity()).build();
 
-        return OrderResponseDto.fromEntity(orderRepository.save(order));
+        Order savedOrder = orderRepository.save(order);
+        publishOrderEvent(savedOrder);
+        return OrderResponseDto.fromEntity(savedOrder);
     }
 
     @Override
@@ -62,5 +69,21 @@ public class OrderServiceImpl implements OrderService {
             throw new EntityNotFoundException("Cannot delete. Order not found with id: " + id);
         }
         orderRepository.deleteById(id);
+    }
+
+    private void publishOrderEvent(Order order) {
+        OrderEvent orderEvent = OrderEvent.builder()
+                .orderId(order.getId())
+                .item(order.getItem())
+                .category(order.getCategory())
+                .quantity(order.getQuantity())
+                .price(order.getPrice())
+                .netAmount(order.getNetAmount())
+                .status(order.getStatus())
+                .createdAt(LocalDateTime.now())
+                .eventType(OrderEventType.ORDER_CREATED)
+                .build();
+
+        rabbitTemplate.convertAndSend("order.exchange", "order.created", orderEvent);
     }
 }
