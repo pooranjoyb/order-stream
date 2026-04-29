@@ -8,4 +8,5 @@ import java.util.List;
 public interface ProductService {
     ProductResponseDto createProduct(ProductRequestDto product);
     List<ProductResponseDto> getAllProducts();
+    void consumeOrder();
 }
