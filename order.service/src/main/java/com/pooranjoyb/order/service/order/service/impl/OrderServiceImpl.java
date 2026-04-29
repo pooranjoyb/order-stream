@@ -1,24 +1,22 @@
 package com.pooranjoyb.order.service.order.service.impl;
 
-import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
+import com.pooranjoyb.shared.common.OrderStatus;
 import com.pooranjoyb.order.service.order.dto.OrderRequestDto;
 import com.pooranjoyb.order.service.order.dto.OrderResponseDto;
 import com.pooranjoyb.order.service.order.entity.Order;
-import com.pooranjoyb.order.common.event.OrderEventType;
-import com.pooranjoyb.order.service.order.event.OrderEvent;
+import com.pooranjoyb.shared.common.OrderEventType;
+import com.pooranjoyb.shared.contracts.OrderEvent;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.order.service.order.service.OrderService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

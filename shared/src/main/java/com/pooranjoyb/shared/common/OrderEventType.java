@@ -1,4 +1,4 @@
-package com.pooranjoyb.order.common.event;
+package com.pooranjoyb.shared.common;
 
 public enum OrderEventType {
     ORDER_CREATED,

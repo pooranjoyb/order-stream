@@ -1,7 +1,7 @@
 package com.pooranjoyb.order.service.order.entity;
 
 import com.pooranjoyb.order.service.core.entity.AuditFields;
-import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
+import com.pooranjoyb.shared.common.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
