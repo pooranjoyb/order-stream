@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./shared/scripts:/docker-entrypoint-initdb.d/
+      - ./infra/docker:/docker-entrypoint-initdb.d/
 
   # rabbitmq
   rabbitmq:
