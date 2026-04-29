@@ -1,7 +1,8 @@
-package com.pooranjoyb.order.service.order.event;
+package com.pooranjoyb.shared.contracts;
 
-import com.pooranjoyb.order.common.event.OrderEventType;
-import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
+
+import com.pooranjoyb.shared.common.OrderEventType;
+import com.pooranjoyb.shared.common.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

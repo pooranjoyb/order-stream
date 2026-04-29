@@ -1,4 +1,4 @@
-package com.pooranjoyb.order.service.order.common.enums;
+package com.pooranjoyb.shared.common;
 
 public enum OrderStatus {
     PENDING,

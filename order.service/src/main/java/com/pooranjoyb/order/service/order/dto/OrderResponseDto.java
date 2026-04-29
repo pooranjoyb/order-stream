@@ -1,7 +1,7 @@
 package com.pooranjoyb.order.service.order.dto;
 
-import com.pooranjoyb.order.service.order.common.enums.OrderStatus;
 import com.pooranjoyb.order.service.order.entity.Order;
+import com.pooranjoyb.shared.common.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
