@@ -9,6 +9,7 @@ import com.pooranjoyb.order.service.order.service.OrderService;
 import com.pooranjoyb.shared.common.OrderStatus;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
@@ -37,7 +39,10 @@ public class OrderServiceImpl implements OrderService {
                 .quantity(orderRequestDto.getQuantity()).build();
 
         Order savedOrder = orderRepository.save(order);
+
         orderEventProducer.publishOrderEvent(savedOrder);
+        log.debug("Order Published in queue: {}", savedOrder);
+
         return OrderResponseDto.fromEntity(savedOrder);
     }
 
