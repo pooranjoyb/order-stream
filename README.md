@@ -5,7 +5,7 @@ Designed with clean architecture and event-driven processing using message queue
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 Make sure you have the following installed:
 
@@ -15,13 +15,13 @@ Make sure you have the following installed:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
-Architecture of this project can be viewed here :)
+Architecture of this project can be viewed here 
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the Repository
 
@@ -40,7 +40,7 @@ This project depends on services like PostgreSQL and RabbitMQ.
 docker-compose up -d
 ```
 
-👉 Ensure all containers are running before proceeding.
+ Ensure all containers are running before proceeding.
 
 ---
 
@@ -54,7 +54,7 @@ mvn clean install
 
 ### 4. Run the Microservices
 
-#### 🟢 Product Service
+####  Product Service
 
 ```bash
 cd product.service
@@ -63,7 +63,7 @@ mvn spring-boot:run
 
 ---
 
-#### 🔵 Order Service
+####  Order Service
 
 ```bash
 cd order.service
@@ -72,7 +72,7 @@ mvn spring-boot:run
 
 ---
 
-#### 🟣 GraphQL Gateway
+####  GraphQL Gateway
 
 ```bash
 cd graphql.gateway
@@ -81,7 +81,7 @@ mvn spring-boot:run
 
 ---
 
-## 🌐 API Documentation
+##  API Documentation
 
 Swagger UI can be accessed at:
 
@@ -91,9 +91,9 @@ http://localhost:8080/swagger-ui/index.html#
 
 ---
 
-## ⚠️ Troubleshooting
+##  Troubleshooting
 
-### ❌ Error: `Failed to load ApplicationContext`
+###  Error: `Failed to load ApplicationContext`
 
 **Cause:**
 Database or message broker is not running.
@@ -106,7 +106,7 @@ docker-compose up -d
 
 ---
 
-### ❌ Error: `release version 21 not supported`
+### Error: `release version 21 not supported`
 
 **Cause:**
 Incorrect Java version.
@@ -119,7 +119,7 @@ Incorrect Java version.
 
 ---
 
-### ❌ Services not starting properly
+### Services not starting properly
 
 **Check:**
 
@@ -133,13 +133,13 @@ docker-compose logs
 
 ---
 
-## 🎯 Notes
+##  Notes
 
 * Always start Docker services before building or running the app
 * Run services in separate terminals for better debugging
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Hope you'll have a great learning experience from this project. Happy Contributing!
