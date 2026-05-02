@@ -5,7 +5,11 @@ Designed with clean architecture and event-driven processing using message queue
 
 ---
 
+<<<<<<< HEAD
 ##  Prerequisites
+=======
+## Prerequisites
+>>>>>>> d0c3c33 (docs: refactor README headings and remove emojis)
 
 Make sure you have the following installed:
 
@@ -15,9 +19,13 @@ Make sure you have the following installed:
 
 ---
 
+<<<<<<< HEAD
 ##  Architecture
+=======
+## Architecture
+>>>>>>> d0c3c33 (docs: refactor README headings and remove emojis)
 
-Architecture of this project can be viewed here :)
+Architecture of this project can be viewed here 
 
 ---
 
@@ -40,7 +48,7 @@ This project depends on services like PostgreSQL and RabbitMQ.
 docker-compose up -d
 ```
 
-👉 Ensure all containers are running before proceeding.
+ Ensure all containers are running before proceeding.
 
 ---
 
@@ -106,7 +114,11 @@ docker-compose up -d
 
 ---
 
+<<<<<<< HEAD
 ###  Error: `release version 21 not supported`
+=======
+### Error: `release version 21 not supported`
+>>>>>>> d0c3c33 (docs: refactor README headings and remove emojis)
 
 **Cause:**
 Incorrect Java version.
@@ -117,9 +129,6 @@ Incorrect Java version.
 * Set `JAVA_HOME` correctly
 * Restart terminal
 
----
-
-###  Services not starting properly
 
 **Check:**
 
