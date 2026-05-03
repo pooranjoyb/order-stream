@@ -1,47 +1,103 @@
 # Order Stream
 
-Comprehensive order processing microservices system built with **Spring Boot**, **PostgreSQL**, and **RabbitMQ**.  
+Comprehensive order processing microservices system built with Spring Boot, PostgreSQL, and RabbitMQ.
 Designed with clean architecture and event-driven processing using message queues.
 
-### Requirements
+---
+
+## Prerequisites
 
 Make sure you have the following installed:
 
-- **Java 21 (LTS)**
-- **Apache Maven 3.9+**
-- **Docker & Docker Compose**
+* Java 21 (LTS)
+* Apache Maven 3.9+
+* Docker & Docker Compose
 
-#### _Architecture of this project can be viewed [here](https://drive.google.com/file/d/1LLSfkOoTyUrUYELHl9_MD4y01DsIZV70/view?usp=drive_link)_ :)
+---
 
-### Getting Started
+## Architecture
 
-#### Clone the Repository
+Architecture of this project can be viewed [here](https://drive.google.com/file/d/1LLSfkOoTyUrUYELHl9_MD4y01DsIZV70/view?usp=drive_link)
+
+---
+
+## Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/order-stream.git
+git clone https://github.com/pooranjoyb/order-stream.git
 cd order-stream
 ```
 
-#### Start Docker Compose
+---
+
+### 2. Start Infrastructure
+
+This project depends on services like PostgreSQL and RabbitMQ.
 
 ```bash
 docker-compose up -d
 ```
 
-#### Run the Microservices
+Ensure all containers are running before proceeding.
 
-- Order Service
+---
+
+### 3. Build the Project
+
 ```bash
-cd order.service
-mvn spring-boot:run
+mvn clean install
 ```
 
-- Product Service
+---
+
+### 4. Run the Microservices
+
+#### Product Service
+
 ```bash
 cd product.service
 mvn spring-boot:run
 ```
 
-#### Swagger-ui can be accessed via ``http://localhost:8080/swagger-ui/index.html#``
+---
 
-Hope you'll have a great learning experience from this project. Happy Contributing!
+#### Order Service
+
+```bash
+cd order.service
+mvn spring-boot:run
+```
+
+---
+
+#### GraphQL Gateway
+
+```bash
+cd graphql.gateway
+mvn spring-boot:run
+```
+
+---
+
+## API Documentation
+
+Swagger UI can be accessed at:
+
+```
+http://localhost:8080/swagger-ui/index.html#
+```
+
+---
+
+## Notes
+
+* Always start Docker services before building or running the app
+* Run services in separate terminals for better debugging
+
+---
+
+## Contributing
+
+Hope you'll have a great learning experience from this project. Happy contributing!
