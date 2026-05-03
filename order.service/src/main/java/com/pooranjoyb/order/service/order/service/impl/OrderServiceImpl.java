@@ -1,8 +1,6 @@
 package com.pooranjoyb.order.service.order.service.impl;
 
 import com.pooranjoyb.order.service.messaging.OrderEventProducer;
-import com.pooranjoyb.order.service.order.dto.OrderRequestDto;
-import com.pooranjoyb.order.service.order.dto.OrderResponseDto;
 import com.pooranjoyb.order.service.order.entity.Order;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.order.service.order.service.OrderService;
@@ -13,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -24,42 +20,33 @@ public class OrderServiceImpl implements OrderService {
     private final OrderEventProducer orderEventProducer;
 
     @Override
-    public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
-        if (orderRequestDto.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
+    public Order createOrder(Order order) {
+        if (order.getPrice() != null && order.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
             throw new RuntimeException("Price must be greater than 0");
         }
-        if (orderRequestDto.getQuantity() <= 0) {
+        if (order.getQuantity() != null && order.getQuantity() <= 0) {
             throw new RuntimeException("Quantity must be greater than 0");
         }
-        Order order = Order.builder()
-                .item(orderRequestDto.getItem())
-                .status(OrderStatus.PENDING)
-                .price(orderRequestDto.getPrice())
-                .category(orderRequestDto.getCategory())
-                .quantity(orderRequestDto.getQuantity()).build();
+        if (order.getStatus() == null) {
+            order.setStatus(OrderStatus.PENDING);
+        }
 
         Order savedOrder = orderRepository.save(order);
 
         orderEventProducer.publishOrderEvent(savedOrder);
         log.debug("Order Published in queue: {}", savedOrder);
 
-        return OrderResponseDto.fromEntity(savedOrder);
+        return savedOrder;
     }
 
     @Override
-    public List<OrderResponseDto> getOrders() {
-        List<Order> orders = orderRepository.findAll();
-        List<OrderResponseDto> orderResponse = new ArrayList<>();
-        for (Order i : orders)
-            orderResponse.add(OrderResponseDto.fromEntity(i));
-
-        return orderResponse;
+    public java.util.List<Order> getOrders() {
+        return orderRepository.findAll();
     }
 
     @Override
-    public OrderResponseDto getOrderById(Long id) {
+    public Order getOrderById(Long id) {
         return orderRepository.findById(id)
-                .map(OrderResponseDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
     }
 
