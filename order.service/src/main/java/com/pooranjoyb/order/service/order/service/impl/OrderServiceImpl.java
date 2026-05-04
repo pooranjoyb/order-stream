@@ -71,5 +71,28 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
     }
 
+    @Override
+    public OrderResponseDto updateOrderById(Long id, OrderRequestDto orderRequestDto) {
+        if (orderRequestDto.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new RuntimeException("Price must be greater than 0");
+        }
+        if (orderRequestDto.getQuantity() <= 0) {
+            throw new RuntimeException("Quantity must be greater than 0");
+        }
+        Order existingOrder = orderRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
+
+        existingOrder.setItem(orderRequestDto.getItem());
+        existingOrder.setPrice(orderRequestDto.getPrice());
+        existingOrder.setCategory(orderRequestDto.getCategory());
+        existingOrder.setQuantity(orderRequestDto.getQuantity());
+
+        Order updatedOrder = orderRepository.save(existingOrder);
+        orderEventProducer.publishOrderEvent(updatedOrder);
+        log.info("Order updated successfully: {}", updatedOrder.getId());
+        
+        return OrderResponseDto.fromEntity(updatedOrder);
+    }
+
 
 }
