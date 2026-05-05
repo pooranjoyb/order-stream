@@ -1,16 +1,24 @@
-# order type
 type Order {
-    id: Int,
-    price: Float,
-    netAmount: Float,
-    category: String,
-    item: String,
-    quantity: Int,
+    price: Float
+    netAmount: Float
+    category: String
+    item: String
+    quantity: Int
     status: String
 }
 
-# queries
+input CreateOrderInput {
+    price: Float!
+    netAmount: Float!
+    category: String!
+    item: String!
+    quantity: Int!
+}
+
 type Query {
-    getOrders: [Order],
-    createOrder: Order
+    getOrders: [Order]
+}
+
+type Mutation {
+    createOrder(input: CreateOrderInput!): Order
 }
