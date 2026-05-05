@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @Table(name = "orders")
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false)

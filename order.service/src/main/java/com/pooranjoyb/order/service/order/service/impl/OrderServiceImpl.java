@@ -82,16 +82,17 @@ public class OrderServiceImpl implements OrderService {
         Order existingOrder = orderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
 
-        existingOrder.setItem(orderRequestDto.getItem());
-        existingOrder.setPrice(orderRequestDto.getPrice());
-        existingOrder.setCategory(orderRequestDto.getCategory());
-        existingOrder.setQuantity(orderRequestDto.getQuantity());
+        Order updatedOrder = existingOrder.toBuilder()
+            .item(orderRequestDto.getItem())
+            .price(orderRequestDto.getPrice())
+            .category(orderRequestDto.getCategory())
+            .quantity(orderRequestDto.getQuantity()).build();
 
-        Order updatedOrder = orderRepository.save(existingOrder);
-        orderEventProducer.publishOrderEvent(updatedOrder);
-        log.info("Order updated successfully: {}", updatedOrder.getId());
+        Order savedOrder = orderRepository.save(updatedOrder);
+        orderEventProducer.publishOrderEvent(savedOrder);
+        log.info("Order updated successfully: {}", savedOrder.getId());
         
-        return OrderResponseDto.fromEntity(updatedOrder);
+        return OrderResponseDto.fromEntity(savedOrder);
     }
 
 
