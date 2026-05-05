@@ -20,4 +20,8 @@ public class OrderServiceClient {
     public List<OrderDto> getOrders() {
         return baseWebClient.getList(orderServiceUrl, Constants.ORDER_GET_ORDERS, OrderDto.class);
     }
+
+    public OrderDto createOrder(OrderDto orderDto) {
+        return baseWebClient.postObject(orderServiceUrl, Constants.ORDER_CREATE_ORDER, orderDto, OrderDto.class);
+    }
 }

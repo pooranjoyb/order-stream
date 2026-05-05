@@ -1,34 +1,24 @@
-# Order type
 type Order {
-    id: ID!
     price: Float
     netAmount: Float
     category: String
     item: String
     quantity: Int
     status: String
-    userId: String
-    createdAt: String
 }
 
-# Input type for creating order
 input CreateOrderInput {
     price: Float!
     netAmount: Float!
     category: String!
     item: String!
     quantity: Int!
-    userId: String!
 }
 
-# Queries
 type Query {
     getOrders: [Order]
-    getOrder(id: ID!): Order
-    getOrdersByUser(userId: String!): [Order]
 }
 
-# Mutations
 type Mutation {
     createOrder(input: CreateOrderInput!): Order
 }
