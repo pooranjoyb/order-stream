@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -87,6 +87,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerArgs>
+						<arg>--add-opens</arg>
+						<arg>java.base/java.lang=ALL-UNNAMED</arg>
+					</compilerArgs>
+				</configuration>
 				<executions>
 					<execution>
 						<id>default-compile</id>
