@@ -2,10 +2,7 @@ package com.pooranjoyb.order.service.core.config;
 
 import com.pooranjoyb.shared.messaging.ExchangeNames;
 import com.pooranjoyb.shared.messaging.RoutingKeys;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
