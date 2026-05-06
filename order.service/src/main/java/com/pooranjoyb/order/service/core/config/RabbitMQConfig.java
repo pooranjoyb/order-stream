@@ -1,6 +1,7 @@
 package com.pooranjoyb.order.service.core.config;
 
 import com.pooranjoyb.shared.messaging.ExchangeNames;
+import com.pooranjoyb.shared.messaging.QueueNames;
 import com.pooranjoyb.shared.messaging.RoutingKeys;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -14,8 +15,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-
-    public static final String PRODUCT_RESERVATION_RESULT_QUEUE = "product.reservation.result.queue";
 
     @Bean
     public JacksonJsonMessageConverter messageConverter() {
@@ -34,7 +33,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue productReservationResultQueue() {
-        return new Queue(PRODUCT_RESERVATION_RESULT_QUEUE, true);
+        return new Queue(QueueNames.PRODUCT_RESERVATION_RESULT_QUEUE, true);
     }
 
     @Bean
