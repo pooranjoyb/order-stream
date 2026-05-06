@@ -1,11 +1,11 @@
 package com.pooranjoyb.order.service.messaging;
 
-import com.pooranjoyb.order.service.core.config.RabbitMQConfig;
 import com.pooranjoyb.order.service.order.entity.Order;
 import com.pooranjoyb.order.service.order.repository.OrderRepository;
 import com.pooranjoyb.shared.common.OrderStatus;
 import com.pooranjoyb.shared.common.ProductEventType;
 import com.pooranjoyb.shared.contracts.ProductReservationResultEvent;
+import com.pooranjoyb.shared.messaging.QueueNames;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class ProductReservationEventConsumer {
 
     private final OrderRepository orderRepository;
 
-    @RabbitListener(queues = RabbitMQConfig.PRODUCT_RESERVATION_RESULT_QUEUE)
+    @RabbitListener(queues = QueueNames.PRODUCT_RESERVATION_RESULT_QUEUE)
     public void consumeProductReservationResult(ProductReservationResultEvent event) {
         log.info("Received ProductReservationResultEvent: {}", event);
         Order order = orderRepository.findById(event.getOrderId())
