@@ -10,6 +10,8 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: postgres
+      TZ: Asia/Kolkata
+      PGTZ: Asia/Kolkata
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./infra/docker:/docker-entrypoint-initdb.d/

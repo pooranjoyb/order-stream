@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 @Slf4j
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles Bean Validation errors
+     * Returns 400 Bad Request
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
@@ -26,6 +30,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handles Resource Not Found errors
+     * Returns 404 Not Found
+     */
     @ExceptionHandler(jakarta.persistence.EntityNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFoundException(jakarta.persistence.EntityNotFoundException ex) {
         log.error("Resource not found: {}", ex.getMessage());
@@ -37,6 +45,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Catching for any other unhandled exceptions
+     * Returns 500 Internal Server Error
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleAllExceptions(Exception ex) {
         log.error(ex.getMessage());
