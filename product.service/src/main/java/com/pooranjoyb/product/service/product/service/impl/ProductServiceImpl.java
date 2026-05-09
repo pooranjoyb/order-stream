@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
                     .item(orderItemName)
                     .reason("Product Not Found")
                     .status(OrderStatus.CANCELLED).build();
-
+            productReservationEventProducer.publishProductReservationEvent(productReservationResultEvent);
             throw new RuntimeException("Product not found");
         }
     }

@@ -9,17 +9,21 @@ import com.pooranjoyb.shared.messaging.QueueNames;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
+
 import java.util.Objects;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@RabbitListener(queues = QueueNames.PRODUCT_RESERVED_QUEUE)
 public class ProductReservationEventConsumer {
 
     private final OrderRepository orderRepository;
 
-    @RabbitListener(queues = QueueNames.PRODUCT_RESERVATION_RESULT_QUEUE)
+    @RabbitHandler
     public void consumeProductReservationResult(ProductReservationResultEvent event) {
         log.info("Received ProductReservationResultEvent: {}", event);
         Order order = orderRepository.findById(event.getOrderId())
