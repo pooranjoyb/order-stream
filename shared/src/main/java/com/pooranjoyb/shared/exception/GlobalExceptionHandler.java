@@ -1,4 +1,4 @@
-package com.pooranjoyb.order.service.exception;
+package com.pooranjoyb.shared.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,6 @@ public class GlobalExceptionHandler {
                 "Validation Failed",
                 fieldName + ": " + errorMessage
         );
-
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
@@ -43,7 +42,6 @@ public class GlobalExceptionHandler {
                 "Resource Not Found",
                 ex.getMessage()
         );
-
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
@@ -59,7 +57,6 @@ public class GlobalExceptionHandler {
                 "Internal Server Error",
                 "Something went wrong. Please try again later."
         );
-
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

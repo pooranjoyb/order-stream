@@ -1,4 +1,4 @@
-package com.pooranjoyb.product.service.exception;
+package com.pooranjoyb.shared.exception;
 
 import java.time.LocalDateTime;
 
