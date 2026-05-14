@@ -36,4 +36,15 @@ public class BaseWebClient {
                 .bodyToMono(responseType)
                 .block();
     }
+
+    public void delete(String baseUrl, String uri) {
+        webClientBuilder
+                .baseUrl(baseUrl)
+                .build()
+                .delete()
+                .uri(uri)
+                .retrieve()
+                .bodyToMono(Void.class)
+                .block();
+    }
 }
