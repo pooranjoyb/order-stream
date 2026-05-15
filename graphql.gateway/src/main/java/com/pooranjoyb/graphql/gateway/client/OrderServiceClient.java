@@ -20,4 +20,14 @@ public class OrderServiceClient {
     public List<OrderDto> getOrders() {
         return baseWebClient.getList(orderServiceUrl, Constants.ORDER_GET_ORDERS, OrderDto.class);
     }
+
+    public OrderDto getOrderById(Long id) {
+        String uri = Constants.ORDER_GET_BY_ID.replace("{id}", id.toString());
+        return baseWebClient.getObject(orderServiceUrl, uri, OrderDto.class);
+    }
+
+    public void deleteOrder(Long id) {
+        String uri = Constants.ORDER_DELETE_BY_ID.replace("{id}", id.toString());
+        baseWebClient.delete(orderServiceUrl, uri);
+    }
 }
