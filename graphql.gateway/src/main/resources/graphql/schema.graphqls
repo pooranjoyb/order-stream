@@ -9,8 +9,21 @@ type Order {
     status: String
 }
 
+input OrderInput {
+    price: Float!,
+    category: String!,
+    item: String!,
+    quantity: Int!
+}
+
 # queries
 type Query {
     getOrders: [Order],
-    createOrder: Order
+    getOrder(id: ID!): Order
+}
+
+type Mutation {
+    createOrder(order: OrderInput!): Order,
+    updateOrder(id: ID!, order: OrderInput!): Order,
+    deleteOrder(id: ID!): Boolean
 }
