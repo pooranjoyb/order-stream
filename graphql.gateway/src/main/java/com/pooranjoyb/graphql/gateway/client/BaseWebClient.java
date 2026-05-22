@@ -37,6 +37,18 @@ public class BaseWebClient {
                 .block();
     }
 
+    public <T, R> T post(String baseUrl, String uri, R requestBody, Class<T> responseType) {
+        return webClientBuilder
+                .baseUrl(baseUrl)
+                .build()
+                .post()
+                .uri(uri)
+                .bodyValue(requestBody)
+                .retrieve()
+                .bodyToMono(responseType)
+                .block();
+    }
+
     public void delete(String baseUrl, String uri) {
         webClientBuilder
                 .baseUrl(baseUrl)
