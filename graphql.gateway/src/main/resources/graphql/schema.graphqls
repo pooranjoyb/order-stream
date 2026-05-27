@@ -9,8 +9,32 @@ type Order {
     status: String
 }
 
+type Product {
+    name: String,
+    inStock: Boolean,
+    image: String,
+    description: String,
+    brand: String,
+    rating: Int
+}
+
+input ProductInput {
+    name: String!,
+    stock: Int!,
+    image: String,
+    description: String,
+    brand: String,
+    rating: Int,
+    sku: Int!
+}
+
 # queries
 type Query {
     getOrders: [Order],
-    createOrder: Order
+    createOrder: Order,
+    getProducts: [Product]
+}
+
+type Mutation {
+    createProduct(product: ProductInput!): Product
 }
