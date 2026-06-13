@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 public class OrderResponseDto {
+    private Long id;
     private BigDecimal price;
     private String category;
     private Integer quantity;
@@ -21,6 +22,7 @@ public class OrderResponseDto {
 
     public static OrderResponseDto fromEntity(Order order) {
         return OrderResponseDto.builder()
+                .id(order.getId())
                 .item(order.getItem())
                 .category(order.getCategory())
                 .price(order.getPrice())
