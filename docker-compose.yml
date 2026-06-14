@@ -32,6 +32,16 @@ services:
       - ./infra/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
       - ./infra/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
 
+  # zipkin - Distributed tracing
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    restart: always
+    ports:
+      - "9411:9411"
+    environment:
+      TZ: Asia/Kolkata
+
 volumes:
   postgres_data:
   rabbitmq_data:
